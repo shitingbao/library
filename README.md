@@ -1,2 +1,0 @@
-# library
-vite library
