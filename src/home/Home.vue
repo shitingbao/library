@@ -1,4 +1,7 @@
-<template></template>
+<template>
+  <div>目录</div>
+  <div>主题</div>
+</template>
 
 <script setup lang="ts"></script>
 
