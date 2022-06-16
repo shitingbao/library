@@ -1,11 +1,11 @@
 import { RouterOptions, createRouter, createWebHistory } from "vue-router";
-// import List from "@/home/Home.vue";
+import Home from "@/home/Home.vue";
 
 const routers = [
   {
     path: "/home",
     name: "home",
-    component: {},
+    component: Home,
   },
   // {
   //   path: "/index",
@@ -17,7 +17,5 @@ const router = createRouter({
   history: createWebHistory(),
   routes: routers,
 });
-
-// const router: RouterOptions = {};
 
 export default router;
