@@ -3,7 +3,7 @@ import Family from "./components/Family.vue";
 </script>
 
 <template>
-  <Family />
+  <router-view></router-view>
 </template>
 
 <style>
