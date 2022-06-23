@@ -3,7 +3,7 @@ import Home from "@/home/Home.vue";
 
 const routers = [
   {
-    path: "/home",
+    path: "/",
     name: "home",
     component: Home,
   },
