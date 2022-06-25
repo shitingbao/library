@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import Family from "./components/Family.vue";
+// import Family from "./components/Family.vue";
 </script>
 
 <template>
-  <router-view></router-view>
+  <router-view class="body"></router-view>
 </template>
 
 <style>
@@ -13,5 +13,13 @@ import Family from "./components/Family.vue";
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
 }
 </style>
