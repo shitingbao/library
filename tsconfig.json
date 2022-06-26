@@ -15,12 +15,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-      // "/@kol/*": ["src/biz/app/kol/views/*"],
-      // "/@ocpm/*": ["src/biz/app/ocpm/views/*"],
-      // "/@common/*": ["src/biz/app/common/views/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
-  // "exclude": ["node_modules"]
   "exclude": ["node_modules", "dist", "**/*.js"]
 }
