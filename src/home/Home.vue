@@ -1,100 +1,84 @@
 <template>
-  <div style="width: 256px">
-    <!-- <a-button
-      type="primary"
-      style="margin-bottom: 16px"
-      @click="toggleCollapsed"
+  <div id="app">
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo title"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
     >
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button> -->
-    <a-menu
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
-      mode="inline"
-      theme="dark"
-      :inline-collapsed="collapsed"
-    >
-      <a-menu-item key="1">
-        <template #icon>
-          <PieChartOutlined />
-        </template>
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <template #icon>
-          <DesktopOutlined />
-        </template>
-        <span>Option 2</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <template #icon>
-          <InboxOutlined />
-        </template>
-        <span>Option 3</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #icon>
-          <MailOutlined />
-        </template>
-        <template #title>Navigation One</template>
-        <a-menu-item key="5">Option 5</a-menu-item>
-        <a-menu-item key="6">Option 6</a-menu-item>
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #icon>
-          <AppstoreOutlined />
-        </template>
-        <template #title>Navigation Two</template>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
-          <a-menu-item key="11">Option 11</a-menu-item>
-          <a-menu-item key="12">Option 12</a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-    </a-menu>
+      <el-menu-item index="index">主页</el-menu-item>
+      <el-submenu index="2">
+        <template slot="title">辅助功能选择项</template>
+        <!-- <el-menu-item index="chatroom">聊天室</el-menu-item> -->
+        <el-menu-item index="imageupload">图片文字提取</el-menu-item>
+        <el-menu-item index="comparison">文件内容比较</el-menu-item>
+        <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
+        <!-- <el-menu-item index="test">test</el-menu-item> -->
+        <!-- <el-submenu index="2-4">
+          <template slot="title">待定0</template>
+          <el-menu-item index="2-4-1">待定1</el-menu-item>
+          <el-menu-item index="2-4-2">待定2</el-menu-item>
+          <el-menu-item index="2-4-3">待定3</el-menu-item>
+        </el-submenu> -->
+      </el-submenu>
+      <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
+      <el-menu-item index="4">
+        <span>控制台</span>
+      </el-menu-item>
+    </el-menu>
+    <div class="library">
+      <!-- <ChatRoom v-if="selectPage === 'chatroom'"></ChatRoom> -->
+      <ImageUpload v-if="selectPage === 'imageupload'"></ImageUpload>
+      <FileComparison v-if="selectPage === 'comparison'"></FileComparison>
+      <!-- <Test v-if="selectPage === 'test'"></Test> -->
+      <ExcelToCsv v-if="selectPage == 'excelToCsv'"></ExcelToCsv>
+      <Index v-if="selectPage == 'index'"></Index>
+    </div>
   </div>
 </template>
+<script lang="ts" setup>
+import { ref } from "vue";
+import ImageUpload from "./library/ImageUpload";
+import FileComparison from "./library/FileComparison";
+// import Test from "./library/Test";
+import ExcelToCsv from "./library/ExcelToCsv";
+import Index from "./library/Index";
 
-<script setup lang="ts">
-import { ref, toRefs, watch } from "vue";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
-} from "@ant-design/icons-vue";
+const activeIndex = ref("1");
+const selectPage = ref("index");
 
-const collapsed = ref(false);
-const selectedKeys = ref(["1"]);
-const openKeys = ref(["sub1"]);
-const preOpenKeys = ref(["sub1"]);
+function contentMes() {
+  // this.$conMsg("123");
+}
 
-watch(
-  () => openKeys,
-  (_val, oldVal) => {
-    preOpenKeys.value = oldVal.value;
-  }
-);
-const toggleCollapsed = () => {
-  collapsed.value = !collapsed;
-
-  openKeys.value = collapsed.value == false ? [] : preOpenKeys.value;
-};
+function handleSelect(key: any, keyPath: any) {
+  selectPage.value = key;
+  console.log("keyPath:", keyPath);
+}
 </script>
-
-<style>
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  width: 100;
+  height: 100%;
+  .title {
+    width: 100%;
+    font-size: 27px;
+    // background: url(../assets/header-1111.png);
+    border-bottom: solid 0px #e6e6e6;
+  }
+  .library {
+    flex: 1;
+    width: 100%;
+  }
 }
 </style>
