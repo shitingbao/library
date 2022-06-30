@@ -2,7 +2,7 @@
 export class Result {
 	code = 0;
 	mes = '';
-	data = '';
+	data = {};
 
 	initData(row: any) {
 		this.code = row?.code;

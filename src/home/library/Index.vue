@@ -11,12 +11,12 @@
       <span>选择区</span>
     </div>
     <div class="base-list">
-      <div @click="chat" class="base-info">
+      <div @click="toChathome" class="base-info">
         <span>在线交友</span><br />
         <span>给你一个展示自我的平台</span><br />
         <span>认识更多志同道合的伙伴</span>
       </div>
-      <div @click="business" class="base-info">
+      <div @click="toChathome" class="base-info">
         <span>商品优选</span><br />
         <span>展示一些个人喜好的物品</span><br />
         <span>大多是依附主题的物品</span>
@@ -119,54 +119,16 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  components: {},
-  data() {
-    return {
-      brand: {},
-      username: "user1"
-    };
-  },
-  mounted() {},
-  created: function() {},
-  methods: {
-    chat() {
-      // this.$router.push({ name: "commoditylist" });
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    business() {
-      let routeData = this.$router.resolve({ name: "commoditylist" });
-      window.open(routeData.href, "_blank");
-      // this.$router.push({ name: "commoditylist" });
-    },
-    study() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    mine() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    photoToWord() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    fileCompare() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    toTxt() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    },
-    waiting() {
-      let routeData = this.$router.resolve({ name: "chathome" });
-      window.open(routeData.href, "_blank");
-    }
-  }
-};
+<script lang="ts" setup>
+import router from "@/router/router";
+import { ref } from "vue";
+const brand = ref({});
+const username = ref("user1");
+function toChathome() {
+  router.push("chathome");
+  // let routeData = this.$router.resolve({ name: "chathome" });
+  // window.open(routeData.href, "_blank");
+}
 </script>
 <style lang="scss">
 .business {
