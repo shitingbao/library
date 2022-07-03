@@ -12,60 +12,63 @@
       Username
       <div class="star">*</div>
     </div>
-    <el-input class="box-width input" placeholder="your username" v-model="username" clearable></el-input>
+    <el-input
+      class="box-width input"
+      placeholder="your username"
+      v-model="username"
+      clearable
+    ></el-input>
     <div class="box-width registered-label">
       Password
       <div class="star">*</div>
     </div>
-    <el-input class="box-width input" placeholder="your password" v-model="pwd" show-password></el-input>
-    <el-button type="primary" @click="register">注册</el-button>
+    <el-input
+      class="box-width input"
+      placeholder="your password"
+      v-model="pwd"
+      show-password
+    ></el-input>
+    <el-button type="primary" @click="registerApi">注册</el-button>
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    returnLogin() {
-      this.$router.push({ name: "login" });
-    },
-    register() {
-      let config = {
-        headers: { "stbweb-api": "register" }
-      };
-      let param = {
-        Name: this.username,
-        Password: this.strToHexCharCode(this.pwd)
-      };
-      // 添加请求头
-      this.$http.post("/register", param, config).then(response => {
-        if (!response.data.success) {
-          console.log("err:", response.data);
-          return;
-        }
-        // this.$router.push({ path: "/login" });
-        this.$router.push({ name: "login" });
-      });
-    },
-    strToHexCharCode(str) {
-      if (str === "") return "";
-      var hexCharCode = [];
-      for (var i = 0; i < str.length; i++) {
-        hexCharCode.push(str.charCodeAt(i).toString(16));
-      }
-      return hexCharCode.join("");
-    }
-  },
-  mounted() {},
-  data() {
-    return {
-      username: "",
-      pwd: "",
-      isLogin: true
-    };
-  },
-  name: "Register",
-  props: {}
-};
+<script setup lang="ts">
+import { ref, PropType } from "vue";
+import router from "@/router/router";
+import { register } from "@/libs/api/loginAndRegister";
+
+const username = ref("");
+const pwd = ref("");
+const isLogin = ref(true);
+
+const name = ref("Register");
+
+function returnLogin() {
+  router.push("login");
+}
+function registerApi() {
+  let config = {
+    headers: { "stbweb-api": "register" },
+  };
+  let param = {
+    Name: username.value,
+    Password: strToHexCharCode(pwd.value),
+  };
+  const response = register(param, config);
+  if (!response) {
+    console.log("err");
+    return;
+  }
+  router.push("login");
+}
+function strToHexCharCode(str: string) {
+  if (str === "") return "";
+  var hexCharCode = [];
+  for (var i = 0; i < str.length; i++) {
+    hexCharCode.push(str.charCodeAt(i).toString(16));
+  }
+  return hexCharCode.join("");
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

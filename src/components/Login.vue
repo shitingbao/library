@@ -22,75 +22,71 @@
     <div class="create-table">
       <label class="create-table-password-title">
         New to GitHub?
-        <a @click="register">Create an account.</a>
+        <a @click="toRegister">Create an account.</a>
       </label>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  methods: {
-    register() {
-      this.isLogin = false;
-      this.$router.push({ path: "/register" });
-    },
-    login() {
-      let config = {
-        headers: { "stbweb-api": "login" }
-      };
-      let param = {
-        Name: this.username,
-        Pwd: this.strToHexCharCode(this.pwd)
-      };
-      // 添加请求头
-      this.$http.post("/login", param, config).then(response => {
-        if (!response.data.success) {
-          console.log("err:", response.data);
-          return;
-        }
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import router from "@/router/router";
+import { login } from "@/libs/api/loginAndRegister";
 
-        localStorage.setItem("username", this.username);
-        localStorage.setItem("token", response.data.token);
-        this.$router.push({ name: "home" });
-      });
-    },
-    // login() {
-    //   this.$router.push({ name: "home" });
-    // },
-    strToHexCharCode(str) {
-      if (str === "") return "";
-      var hexCharCode = [];
-      for (var i = 0; i < str.length; i++) {
-        hexCharCode.push(str.charCodeAt(i).toString(16));
-      }
-      return hexCharCode.join("");
-    }
-  },
-  mounted() {
-    let config = {
-      headers: { "stbweb-api": "check" }
-    };
-    let param = {
-      token: localStorage.getItem("token")
-    };
-    // 添加请求头
-    this.$http.post("/login", param, config).then(response => {
-      if (response.data.success) {
-        this.$router.push({ name: "home" });
-        return;
-      }
-    });
-  },
-  data() {
-    return {
-      username: "",
-      pwd: ""
-    };
-  },
-  name: "Login",
-  props: {}
-};
+const username = ref("");
+const pwd = ref("");
+
+const name = ref("Login");
+const isLogin = ref(true);
+
+function toRegister() {
+  isLogin.value = false;
+  router.push("register");
+}
+
+function loginApi() {
+  let config = {
+    headers: { "stbweb-api": "login" },
+  };
+  let param = {
+    Name: username,
+    Pwd: strToHexCharCode(pwd.value),
+  };
+  // 添加请求头
+  const response = login(param, config);
+  if (!response) {
+    console.log("err:");
+    return;
+  }
+
+  localStorage.setItem("username", username.value);
+  // localStorage.setItem("token", response.data.token);
+  router.push("home");
+}
+
+function strToHexCharCode(str: string) {
+  if (str === "") return "";
+  var hexCharCode = [];
+  for (var i = 0; i < str.length; i++) {
+    hexCharCode.push(str.charCodeAt(i).toString(16));
+  }
+  return hexCharCode.join("");
+}
+
+onMounted(() => {
+  let config = {
+    headers: { "stbweb-api": "check" },
+  };
+  let param = {
+    token: localStorage.getItem("token"),
+  };
+  const response = login(param, config);
+  if (!response) {
+    console.log("err:");
+    return;
+  }
+  router.push({ name: "home" });
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -1,9 +1,9 @@
 import { post } from "./api";
 
-function login(formData:any) {
-  return post("/v1/login",formData) 
+export function login(formData:any,...cf:any) {
+  return post("/v1/login",formData,cf) 
 }
 
-function register(formData:any) {
-  return post("/v1/register",formData) 
+export function register(formData:any,...cf:any) {
+  return post("/v1/register",   formData,cf) 
 }
