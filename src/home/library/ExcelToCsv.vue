@@ -33,7 +33,7 @@
           >选取文件</el-button
         >
         <el-button
-          style="margin-left: 10px;"
+          style="margin-left: 10px"
           size="small"
           type="success"
           @click="submitUpload(isfileType ? 'excel' : 'csv')"
@@ -64,105 +64,96 @@
     ></ExcelToCsvCommon>
   </div>
 </template>
-<script>
+<script lang="ts" setup>
+import { ref } from "vue";
 import axios from "axios";
 import ExcelToCsvCommon from "./ExcelToCsvCommon";
-export default {
-  components: {
-    ExcelToCsvCommon
-  },
-  data() {
-    return {
-      isOrdinary: false, //是否是普通选项,false为普通选项
-      activeName: "csv", //默认显示哪个卡片
-      isfileType: false,
-      //upload中用于展示的列表
-      fileList: [],
-      //表单中要上传的文件
-      formFileList: [],
-      downFileList: []
-    };
-  },
-  methods: {
-    downloadItem(url, label) {
-      axios
-        .get(url, { responseType: "blob" })
-        .then(response => {
-          const blob = new Blob([response.data]);
-          const link = document.createElement("a");
-          link.href = URL.createObjectURL(blob);
-          link.download = label;
-          link.click();
-          URL.revokeObjectURL(link.href);
-        })
-        .catch(console.error);
-    },
-    download(base) {
-      let config = {
-        headers: { "stbweb-api": "down", token: localStorage.getItem("token") }
-      };
-      let param = {
-        Base: base
-      };
-      // 添加请求头
-      this.$http.post("/down", param, config).then(response => {
-        if (response.data.success) {
-          return;
-        }
-      });
-    },
 
-    changeFile(file) {
-      this.formFileList.push({ name: file.name, fData: file.raw });
-      // console.log("change:", file);
-    },
-    //默认提交，不考虑分隔符和编码格式
-    submitUpload(createFileType) {
-      for (let i = 0; i < this.formFileList.length; i++) {
-        let param = new FormData(); // 创建form对象
-        param.append("file", this.formFileList[i].fData);
-        // param.append("sep", "");
-        // param.append("gbk", "");
-        // param.append("createSep", "");
-        // param.append("isCreateGBK", "");
-        param.append("createFileType", createFileType);
-        let config = {
-          headers: { "Content-Type": "multipart/form-data" }
-        };
-        this.$http.post("/export", param, config).then(response => {
-          if (response.data.success) {
-            // console.log(response.data.url);
-            this.downFileList.push({
-              name: response.data.url.split("/")[1],
-              url: axios.defaults.baseURL + "/" + response.data.url
-            });
-          } else {
-            this.$message({
-              showClose: true,
-              message: response.data.msg,
-              type: "error",
-              duration: 2000
-            });
-          }
+const isOrdinary = ref(false); //是否是普通选项,false为普通选项
+const activeName = ref("csv"); //默认显示哪个卡片
+const isfileType = ref(false);
+//upload中用于展示的列表
+const fileList = ref([]);
+//表单中要上传的文件
+const formFileList = ref([]);
+const downFileList = ref([]);
+
+function downloadItem(url, label) {
+  axios
+    .get(url, { responseType: "blob" })
+    .then((response) => {
+      const blob = new Blob([response.data]);
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = label;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    })
+    .catch(console.error);
+}
+function download(base) {
+  let config = {
+    headers: { "stbweb-api": "down", token: localStorage.getItem("token") },
+  };
+  let param = {
+    Base: base,
+  };
+  // 添加请求头
+  this.$http.post("/down", param, config).then((response) => {
+    if (response.data.success) {
+      return;
+    }
+  });
+}
+
+function changeFile(file) {
+  this.formFileList.push({ name: file.name, fData: file.raw });
+  // console.log("change:", file);
+}
+
+//默认提交，不考虑分隔符和编码格式
+function submitUpload(createFileType) {
+  for (let i = 0; i < this.formFileList.length; i++) {
+    let param = new FormData(); // 创建form对象
+    param.append("file", this.formFileList[i].fData);
+    // param.append("sep", "");
+    // param.append("gbk", "");
+    // param.append("createSep", "");
+    // param.append("isCreateGBK", "");
+    param.append("createFileType", createFileType);
+    let config = {
+      headers: { "Content-Type": "multipart/form-data" },
+    };
+    this.$http.post("/export", param, config).then((response) => {
+      if (response.data.success) {
+        // console.log(response.data.url);
+        this.downFileList.push({
+          name: response.data.url.split("/")[1],
+          url: axios.defaults.baseURL + "/" + response.data.url,
+        });
+      } else {
+        this.$message({
+          showClose: true,
+          message: response.data.msg,
+          type: "error",
+          duration: 2000,
         });
       }
-      this.fileList = [];
-      this.formFileList = [];
-    },
-    handleRemove(file) {
-      // console.log("remove:", file, fileList);
-      var index = this.formFileList.findIndex(item => {
-        if (item.name == file.name) {
-          return true;
-        }
-      });
-      this.formFileList.splice(index, 1);
-    }
-    // handlePreview(file) {
-    //   console.log("preview:", file);
-    // }
+    });
   }
-};
+  this.fileList = [];
+  this.formFileList = [];
+}
+
+function handleRemove(file) {
+  // console.log("remove:", file, fileList);
+  var index = this.formFileList.findIndex((item) => {
+    if (item.name == file.name) {
+      return true;
+    }
+  });
+  this.formFileList.splice(index, 1);
+}
 </script>
 <style lang="scss" scoped>
 .switch {
