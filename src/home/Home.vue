@@ -31,21 +31,15 @@
     </el-menu>
     <div class="library">
       <!-- <ChatRoom v-if="selectPage === 'chatroom'"></ChatRoom> -->
-      <ImageUpload v-if="selectPage === 'imageupload'"></ImageUpload>
-      <FileComparison v-if="selectPage === 'comparison'"></FileComparison>
       <!-- <Test v-if="selectPage === 'test'"></Test> -->
-      <ExcelToCsv v-if="selectPage == 'excelToCsv'"></ExcelToCsv>
       <Index v-if="selectPage == 'index'"></Index>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
-import ImageUpload from "./library/ImageUpload";
-import FileComparison from "./library/FileComparison";
 // import Test from "./library/Test";
-import ExcelToCsv from "./library/ExcelToCsv";
-import Index from "./library/Index";
+import Index from "./library/Index.vue";
 
 const activeIndex = ref("1");
 const selectPage = ref("index");
@@ -59,7 +53,7 @@ function handleSelect(key: any, keyPath: any) {
   console.log("keyPath:", keyPath);
 }
 </script>
-<style lang="scss">
+<style lang="less">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -130,7 +130,7 @@ function toChathome() {
   // window.open(routeData.href, "_blank");
 }
 </script>
-<style lang="scss">
+<style lang="less">
 .business {
   display: flex;
   width: 100%;
