@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <el-menu
       :default-active="activeIndex"
       class="el-menu-demo title"
@@ -11,27 +11,15 @@
     >
       <el-menu-item index="index">主页</el-menu-item>
       <el-submenu index="2">
-        <template slot="title">辅助功能选择项</template>
-        <!-- <el-menu-item index="chatroom">聊天室</el-menu-item> -->
         <el-menu-item index="imageupload">图片文字提取</el-menu-item>
         <el-menu-item index="comparison">文件内容比较</el-menu-item>
         <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
-        <!-- <el-menu-item index="test">test</el-menu-item> -->
-        <!-- <el-submenu index="2-4">
-          <template slot="title">待定0</template>
-          <el-menu-item index="2-4-1">待定1</el-menu-item>
-          <el-menu-item index="2-4-2">待定2</el-menu-item>
-          <el-menu-item index="2-4-3">待定3</el-menu-item>
-        </el-submenu> -->
       </el-submenu>
-      <!-- <el-menu-item index="3" disabled>消息中心</el-menu-item> -->
       <el-menu-item index="4">
         <span>控制台</span>
       </el-menu-item>
     </el-menu>
     <div class="library">
-      <!-- <ChatRoom v-if="selectPage === 'chatroom'"></ChatRoom> -->
-      <!-- <Test v-if="selectPage === 'test'"></Test> -->
       <Index v-if="selectPage == 'index'"></Index>
     </div>
   </div>
@@ -54,7 +42,7 @@ function handleSelect(key: any, keyPath: any) {
 }
 </script>
 <style lang="less">
-#app {
+.app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -64,7 +52,10 @@ function handleSelect(key: any, keyPath: any) {
   flex-direction: column;
   width: 100;
   height: 100%;
+  padding: 0px;
+  margin: 0px;
   .title {
+    display: flex;
     width: 100%;
     font-size: 27px;
     // background: url(../assets/header-1111.png);
