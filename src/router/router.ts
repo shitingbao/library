@@ -1,17 +1,22 @@
 import { RouterOptions, createRouter, createWebHistory } from "vue-router";
-import Home from "@/home/Home.vue";
 import Chat from "@/components/Chat.vue";
+import Qrcode from "@/components/Qrcode.vue";
+import Index from "@/home/library/Index.vue";
 
-const routers = [
-  {
-    path: "/",
-    name: "home",
-    component: Home,
-  },
+const routers = [  {
+  path: "/",
+  name: "index",
+  component: Index,
+},
   {
     path: "/chat",
     name: "chat",
     component: Chat,
+  },
+  {
+    path: "/qrcode",
+    name: "qrcode",
+    component: Qrcode,
   },
   // {
   //   path: "/index",

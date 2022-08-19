@@ -20,14 +20,14 @@
       </el-menu-item>
     </el-menu>
     <div class="library">
-      <Index v-if="selectPage == 'index'"></Index>
+      <!-- <Index v-if="selectPage == 'index'"></Index> -->
+      <router-view class="body"></router-view>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref } from "vue";
-// import Test from "./library/Test";
-import Index from "./library/Index.vue";
+import router from "@/router/router";
 
 const activeIndex = ref("1");
 const selectPage = ref("index");
@@ -38,7 +38,8 @@ function contentMes() {
 
 function handleSelect(key: any, keyPath: any) {
   selectPage.value = key;
-  console.log("keyPath:", keyPath);
+  console.log("keyPath:", key, "--keyPath:", keyPath);
+  router.push(key);
 }
 </script>
 <style lang="less">

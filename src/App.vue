@@ -1,8 +1,10 @@
-<script lang="ts" setup></script>
-
 <template>
-  <router-view class="body"></router-view>
+  <Home class="body"></Home>
 </template>
+
+<script lang="ts" setup>
+import Home from "@/home/Home.vue";
+</script>
 
 <style>
 .body {
