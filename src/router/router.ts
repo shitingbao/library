@@ -52,6 +52,7 @@ router.beforeEach((to, from, next) => {
   // }
   // const res = userStat({},{})
   console.log("res:");
+  next();
 });
 
 export default router;

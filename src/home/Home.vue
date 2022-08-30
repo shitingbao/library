@@ -20,7 +20,7 @@
         <span>控制台</span>
       </el-menu-item>
     </el-menu>
-    <router-view class="content">123</router-view>
+    <router-view class="content"></router-view>
   </div>
 </template>
 <script lang="ts" setup>
@@ -45,6 +45,7 @@ function handleSelect(key: any, keyPath: any) {
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   .menu {
     display: flex;
     width: 100%;
