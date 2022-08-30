@@ -9,13 +9,11 @@
       text-color="#fff"
       active-text-color="#ffd04b"
     >
-      <el-menu-item index="index">主页</el-menu-item>
-      <el-submenu index="2">
-        <el-menu-item index="socket">socket</el-menu-item>
-        <el-menu-item index="imageupload">图片文字提取</el-menu-item>
-        <el-menu-item index="comparison">文件内容比较</el-menu-item>
-        <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
-      </el-submenu>
+      <el-menu-item index="/">主页</el-menu-item>
+      <el-menu-item index="socket">socket</el-menu-item>
+      <el-menu-item index="imageupload">图片文字提取</el-menu-item>
+      <el-menu-item index="comparison">文件内容比较</el-menu-item>
+      <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
       <el-menu-item index="4">
         <span>控制台</span>
       </el-menu-item>

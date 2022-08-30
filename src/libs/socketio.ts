@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socket = io("ws://127.0.0.1:5005", {
+const socket = io("ws://127.0.0.1:5005/remote", {
   extraHeaders: {
     "x-device-token": "1234",
     "x-remote-token": "1234:567",
@@ -10,18 +10,6 @@ const socket = io("ws://127.0.0.1:5005", {
   auth: {
     token: "123",
   },
-});
-
-socket.on("connection", () => {
-  console.log(socket.id); // "G5p5..."
-});
-
-socket.on("openrtc", (msg: any) => {
-  console.log("openrtc==>:", msg); // "G5p5..."
-});
-
-socket.on("disconnect", () => {
-  console.log(socket.id); // "G5p5..."
 });
 
 export { socket };
