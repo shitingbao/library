@@ -1,5 +1,5 @@
 <template>
-  <div class="business"></div>
+  <div class="business">socket</div>
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";

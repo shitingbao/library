@@ -2,13 +2,16 @@ import { RouterOptions, createRouter, createWebHistory } from "vue-router";
 import Chat from "@/components/Chat.vue";
 import Qrcode from "@/components/Qrcode.vue";
 import Index from "@/home/library/Index.vue";
+import Socket from "@/components/Socket.vue";
+
 import { userStat } from "@/api/user";
 
-const routers = [  {
-  path: "/",
-  name: "index",
-  component: Index,
-},
+const routers = [
+  {
+    path: "/",
+    name: "index",
+    component: Index,
+  },
   {
     path: "/chat",
     name: "chat",
@@ -18,6 +21,11 @@ const routers = [  {
     path: "/qrcode",
     name: "qrcode",
     component: Qrcode,
+  },
+  {
+    path: "/socket",
+    name: "socket",
+    component: Socket,
   },
   // {
   //   path: "/index",
@@ -42,8 +50,8 @@ router.beforeEach((to, from, next) => {
   // } else {
   //   router.push("")
   // }
-  const res = userStat({},{})
-  console.log("res:",res)
-})
+  // const res = userStat({},{})
+  console.log("res:");
+});
 
 export default router;

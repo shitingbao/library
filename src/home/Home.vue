@@ -11,6 +11,7 @@
     >
       <el-menu-item index="index">主页</el-menu-item>
       <el-submenu index="2">
+        <el-menu-item index="socket">socket</el-menu-item>
         <el-menu-item index="imageupload">图片文字提取</el-menu-item>
         <el-menu-item index="comparison">文件内容比较</el-menu-item>
         <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
@@ -19,7 +20,7 @@
         <span>控制台</span>
       </el-menu-item>
     </el-menu>
-    <router-view class="content"></router-view>
+    <router-view class="content">123</router-view>
   </div>
 </template>
 <script lang="ts" setup>
@@ -53,5 +54,11 @@ function handleSelect(key: any, keyPath: any) {
     flex: 1;
     width: 100%;
   }
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 </style>
