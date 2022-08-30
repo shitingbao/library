@@ -24,3 +24,19 @@ export async function post(baseUrl:string,formData:any,...cf:any) {
   rdata.initData(res.data)
   return rdata
 }
+
+export async function get(baseUrl:string,params:any,...handers:any) {
+  var hd={}
+  if (handers)   {
+  hd=  Object.assign(hd,cloneDeep(handers))
+  }
+  const res = await axios({
+        method: "GET",
+        url: baseUrl,
+        params: params,
+        headers: hd,
+      })
+  const rdata = new Result()
+  rdata.initData(res.data)
+  return rdata
+}

@@ -1,14 +1,7 @@
 <template>
   <div class="business">
-    <el-carousel trigger="click" height="150px" class="carousel">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3 class="small">{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
-
     <div class="base-title">
-      <span>功能</span>
-      <span>选择区</span>
+      <span>功能选择区</span>
     </div>
     <div class="base-list">
       <div @click="toChathome" class="base-info">

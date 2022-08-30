@@ -1,17 +1,19 @@
 <template>
-  <Home class="body"></Home>
+  <Home class="home"></Home>
 </template>
 
 <script lang="ts" setup>
 import Home from "@/home/Home.vue";
 </script>
 
-<style>
-.body {
+<style lang="less">
+body {
   display: flex;
   width: 100%;
-  height: 100%;
-  padding: 0px;
   margin: 0px;
+  .home {
+    display: flex;
+    width: 100%;
+  }
 }
 </style>
