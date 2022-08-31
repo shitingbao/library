@@ -1,7 +1,8 @@
 <template>
   <div class="business">
     socket
-    <el-button @click="socketConnect">connect</el-button>
+    <el-button @click="socketConnect">socketio test connect</el-button>
+    <el-button @click="socketEmit">emit</el-button>
   </div>
 </template>
 <script lang="ts" setup>
@@ -16,22 +17,15 @@ function socketConnect() {
   // router.push("chat");
   // let routeData = this.$router.resolve({ name: "chathome" });
   // window.open(routeData.href, "_blank");
-
-  onMounted(() => {
-    socket.on("connection", () => {
-      console.log(socket.id); // "G5p5..."
-    });
-
-    socket.on("openrtc", (msg: any) => {
-      console.log("openrtc==>:", msg); // "G5p5..."
-    });
-
-    socket.on("disconnect", () => {
-      console.log(socket.id); // "G5p5..."
-    });
-    console.log("onMounted 123");
-  });
 }
+
+function socketEmit() {
+  socket.emit("test", { data: "this is test" });
+}
+
+onMounted(() => {
+  console.log("onMounted 123");
+});
 </script>
 <style lang="less">
 .business {
