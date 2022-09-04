@@ -3,6 +3,7 @@ import Chat from "@/components/Chat.vue";
 import Qrcode from "@/components/Qrcode.vue";
 import Index from "@/home/library/Index.vue";
 import Socket from "@/components/Socket.vue";
+import Software from "@/components/software/Software.vue";
 
 import { userStat } from "@/api/user";
 
@@ -26,6 +27,11 @@ const routers = [
     path: "/socket",
     name: "socket",
     component: Socket,
+  },
+  {
+    path: "/software",
+    name: "software",
+    component: Software,
   },
   // {
   //   path: "/index",

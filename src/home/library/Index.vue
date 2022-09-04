@@ -1,7 +1,7 @@
 <template>
   <div class="business">
     <div class="base-list">
-      <div @click="toChathome" class="base-info">
+      <div @click="toSofeWare" class="base-info">
         <span>软件著作</span>
       </div>
       <div @click="toChathome" class="base-info">
@@ -20,12 +20,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-// import router from "@/router/router";
+import router from "@/router/router";
 import { ref } from "vue";
 const brand = ref({});
 const username = ref("user1");
 function toChathome() {
   // router.push("chat");
+  // let routeData = this.$router.resolve({ name: "chathome" });
+  // window.open(routeData.href, "_blank");
+}
+
+function toSofeWare() {
+  router.push("software");
   // let routeData = this.$router.resolve({ name: "chathome" });
   // window.open(routeData.href, "_blank");
 }
