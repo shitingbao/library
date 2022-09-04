@@ -3,7 +3,7 @@ import axios from "axios";
 import qs from "qs";
 import { cloneDeep } from "lodash-es";
 
-axios.defaults.baseURL = "http://localhost:6200";
+axios.defaults.baseURL = "http://localhost:8000";
 
 // 统一使用相同的请求方法
 export async function post(baseUrl: string, formData: any, ...cf: any) {

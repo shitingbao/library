@@ -7,20 +7,16 @@
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";
-import { socket } from "@/libs/socketio";
+// import { socket } from "@/libs/socketio";
 import { onMounted, ref } from "vue";
 
 const brand = ref({});
 const username = ref("user1");
 
-function socketConnect() {
-  // router.push("chat");
-  // let routeData = this.$router.resolve({ name: "chathome" });
-  // window.open(routeData.href, "_blank");
-}
+function socketConnect() {}
 
 function socketEmit() {
-  socket.emit("test", { data: "this is test" });
+  // socket.emit("test", { data: "this is test" });
 }
 
 onMounted(() => {

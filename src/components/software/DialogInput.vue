@@ -8,7 +8,7 @@
     >
       <el-form :model="form" label-width="120px">
         <el-form-item label="Activity name">
-          <el-input v-model="form.name" />
+          <el-input v-model="form.key" />
         </el-form-item>
 
         <el-form-item label="Activity form">
@@ -24,7 +24,7 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="closeDialog">Cancel</el-button>
-          <el-button type="primary" @click="closeDialog"> Confirm </el-button>
+          <el-button type="primary" @click="submit"> 提交 </el-button>
         </span>
       </template>
     </el-dialog>
@@ -34,7 +34,8 @@
 import { onMounted, ref, reactive, watch, PropType } from "vue";
 import { ElMessageBox } from "element-plus";
 import bus from "@/libs/bus";
-import { params } from "@/model/params";
+import { code, params } from "@/model/params";
+import { createDocxHeader, createDocxcontent } from "@/api/docx";
 
 const props = defineProps({
   dialogVisible: {
@@ -51,13 +52,7 @@ const visible = ref(false);
 const name = ref("");
 
 const form = reactive({
-  name: "",
-  region: "",
-  date1: "",
-  date2: "",
-  delivery: false,
-  type: [],
-  resource: "",
+  key: "",
   desc: "",
 });
 
@@ -78,6 +73,23 @@ function closeDialog() {
   bus.emit("software_dialog", { Dialog: name.value, IsShow: false });
 }
 
+async function submit() {
+  if (form.key === "" || form.desc === "") {
+    return;
+  }
+  const da: code = { key: form.key, content: form.desc };
+  const formData: [code] = [da];
+  switch (props.DialogFlag) {
+    case 1:
+      await createDocxHeader(formData);
+      break;
+    case 2:
+      await createDocxcontent(formData);
+      break;
+  }
+  closeDialog();
+}
+
 watch(
   () => props.dialogVisible,
   () => {
@@ -87,7 +99,6 @@ watch(
       case 2:
         name.value = "录入代码片段";
     }
-
     visible.value = props.dialogVisible;
   }
 );
