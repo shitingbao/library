@@ -3,25 +3,35 @@
     <el-button
       class="login-table-signin"
       type="primary"
-      @click="openDiolog({ DialogFlag: 1, IsShow: true } as params)"
+      @click="
+        openDiolog({ DialogFlag: 1, IsShow: true, DialogTitle: '录入头文件' })
+      "
     >
       录入头文件
     </el-button>
     <el-button
       class="login-table-signin"
       type="primary"
-      @click="openDiolog({ DialogFlag: 2, IsShow: true } as params)"
+      @click="
+        openDiolog({ DialogFlag: 2, IsShow: true, DialogTitle: '录入代码片段' })
+      "
     >
       录入代码片段
     </el-button>
     <el-button
       class="login-table-signin"
       type="primary"
-      @click="openDiolog({ DialogFlag: 3, IsShow: true } as params)"
+      @click="
+        openDiolog({ DialogFlag: 3, IsShow: true, DialogTitle: '生成docx' })
+      "
     >
       生成docx
     </el-button>
-    <DialogInput :dialogVisible="dialogVisible" :DialogFlag="DialogFlag">
+    <DialogInput
+      :dialogVisible="dialogVisible"
+      :DialogFlag="DialogFlag"
+      :title="title"
+    >
     </DialogInput>
   </div>
 </template>
@@ -33,12 +43,14 @@ import { params } from "@/model/params";
 
 const dialogVisible = ref(false);
 const DialogFlag = ref(1);
+const title = ref("");
 
 bus.on("software_dialog", openDiolog as any);
 
 function openDiolog(arg: params) {
   DialogFlag.value = arg.DialogFlag;
   dialogVisible.value = arg.IsShow;
+  title.value = arg.DialogTitle;
 }
 
 onMounted(() => {});

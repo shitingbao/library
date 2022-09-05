@@ -7,12 +7,13 @@
       :before-close="handleClose"
     >
       <el-form :model="form" label-width="120px">
-        <el-form-item label="Activity name">
+        <el-form-item label="key">
           <el-input v-model="form.key" />
         </el-form-item>
-
-        <el-form-item label="Activity form">
-          <!-- <el-input v-model="form.desc" type="textarea" /> -->
+        <el-form-item v-if="props.DialogFlag !== 1" label="language">
+          <el-input v-model="form.language" />
+        </el-form-item>
+        <el-form-item label="content">
           <el-input
             v-model="form.desc"
             :autosize="{ minRows: 2, maxRows: 4 }"
@@ -46,6 +47,10 @@ const props = defineProps({
     type: Number,
     required: true,
   },
+  title: {
+    type: String,
+    required: true,
+  },
 });
 
 const visible = ref(false);
@@ -53,6 +58,7 @@ const name = ref("");
 
 const form = reactive({
   key: "",
+  language: "",
   desc: "",
 });
 
@@ -78,12 +84,17 @@ async function submit() {
     return;
   }
   const da: code = { key: form.key, content: form.desc };
-  const formData: [code] = [da];
   switch (props.DialogFlag) {
     case 1:
+      var formData = {
+        codes: [{ key: form.key, language: "", content: form.desc }],
+      };
       await createDocxHeader(formData);
       break;
     case 2:
+      var formData = {
+        codes: [{ key: form.key, language: "", content: form.desc }],
+      };
       await createDocxcontent(formData);
       break;
   }
@@ -93,15 +104,16 @@ async function submit() {
 watch(
   () => props.dialogVisible,
   () => {
-    switch (props.DialogFlag) {
-      case 1:
-        name.value = "录入头文件";
-      case 2:
-        name.value = "录入代码片段";
-    }
     visible.value = props.dialogVisible;
   }
 );
 
+watch(
+  () => props.title,
+  () => {
+    console.log("props.title,==>:", props.title);
+    name.value = props.title;
+  }
+);
 onMounted(() => {});
 </script>
