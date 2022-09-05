@@ -8,7 +8,9 @@ axios.defaults.baseURL = "http://localhost:8000";
 // 统一使用相同的请求方法
 export async function post(baseUrl: string, formData: any, ...cf: any) {
   var hd = {
-    "content-type": "application/x-www-form-urlencoded",
+    // "content-type": "application/x-www-form-urlencoded",
+    // "content-type": "application/json;charset=UTF-8",
+    "content-type": "text/plain",
   };
   if (cf) {
     hd = Object.assign(hd, cloneDeep(cf));
@@ -16,7 +18,8 @@ export async function post(baseUrl: string, formData: any, ...cf: any) {
   const res = await axios({
     method: "POST",
     url: baseUrl,
-    data: qs.stringify(formData),
+    // data: qs.stringify(formData),
+    data: JSON.stringify(formData),
     headers: hd,
   });
   const rdata = new Result();
