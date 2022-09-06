@@ -7,15 +7,15 @@
       :before-close="handleClose"
     >
       <el-form :model="form" label-width="120px">
-        <el-form-item label="key">
+        <el-form-item v-if="props.DialogFlag !== 1" label="key">
           <el-input v-model="form.key" />
         </el-form-item>
-        <el-form-item v-if="props.DialogFlag !== 1" label="language">
+        <el-form-item label="language">
           <el-input v-model="form.language" />
         </el-form-item>
         <el-form-item label="content">
           <el-input
-            v-model="form.desc"
+            v-model="form.content"
             :autosize="{ minRows: 2, maxRows: 4 }"
             type="textarea"
             placeholder="Please input"
@@ -35,7 +35,7 @@
 import { onMounted, ref, reactive, watch, PropType } from "vue";
 import { ElMessageBox } from "element-plus";
 import bus from "@/libs/bus";
-import { code, params } from "@/model/params";
+import { codeHeader, code, params } from "@/model/params";
 import { createDocxHeader, createDocxcontent } from "@/api/docx";
 
 const props = defineProps({
@@ -59,7 +59,7 @@ const name = ref("");
 const form = reactive({
   key: "",
   language: "",
-  desc: "",
+  content: "",
 });
 
 function handleClose(done: any) {
@@ -80,21 +80,23 @@ function closeDialog() {
 }
 
 async function submit() {
-  if (form.key === "" || form.desc === "") {
+  if (form.language === "" || form.content === "") {
+    closeDialog();
     return;
   }
-  const da: code = { key: form.key, content: form.desc };
+
+  const da: codeHeader = {
+    key: form.key,
+    language: form.language,
+    content: form.content,
+  };
+
+  const formData = { codes: da };
   switch (props.DialogFlag) {
     case 1:
-      var formData = {
-        codes: [{ key: form.key, language: "", content: form.desc }],
-      };
       await createDocxHeader(formData);
       break;
     case 2:
-      var formData = {
-        codes: [{ key: form.key, language: "", content: form.desc }],
-      };
       await createDocxcontent(formData);
       break;
   }

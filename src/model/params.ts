@@ -8,3 +8,9 @@ export interface code {
   key: string;
   content: string;
 }
+
+export interface codeHeader {
+  key: string;
+  language: string;
+  content: string;
+}

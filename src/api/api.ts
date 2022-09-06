@@ -9,8 +9,9 @@ axios.defaults.baseURL = "http://localhost:8000";
 export async function post(baseUrl: string, formData: any, ...cf: any) {
   var hd = {
     // "content-type": "application/x-www-form-urlencoded",
-    // "content-type": "application/json;charset=UTF-8",
-    "content-type": "text/plain",
+    "content-type": "application/json;charset=UTF-8",
+    // "content-type": "text/plain",
+    // "content-type": "multipart/from-data",
   };
   if (cf) {
     hd = Object.assign(hd, cloneDeep(cf));
