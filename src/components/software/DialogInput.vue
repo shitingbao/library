@@ -91,7 +91,7 @@ async function submit() {
     content: form.content,
   };
 
-  const formData = { codes: da };
+  const formData = { codes: JSON.stringify([da]) };
   switch (props.DialogFlag) {
     case 1:
       await createDocxHeader(formData);
