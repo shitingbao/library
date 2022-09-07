@@ -14,3 +14,13 @@ export interface codeHeader {
   language: string;
   content: string;
 }
+
+export interface codeFileParam {
+  header_content: string;
+  language: string;
+  header_filters: string[];
+  content_filters: string[];
+  content_keys: string[];
+  contents_num: number;
+  content_title: string;
+}

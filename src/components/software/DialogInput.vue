@@ -101,6 +101,9 @@ async function submit() {
       break;
   }
   closeDialog();
+  form.content = "";
+  form.key = "";
+  form.language = "";
 }
 
 watch(
