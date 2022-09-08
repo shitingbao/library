@@ -19,8 +19,8 @@ socket.on("disconnect", () => {
   console.log(socket.id); // "G5p5..."
 });
 
-socket.onAny((event, msg) => {
-  console.log("onAny:", event, msg);
-});
+// socket.onAny((event, msg) => {
+//   console.log("onAny:", event, msg);
+// });
 
 export { socket };

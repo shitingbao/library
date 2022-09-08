@@ -31,7 +31,7 @@ function leaveroom() {
 function socketEmit() {
   socket.emit("room-broadcast", "room-test", {
     event: "test",
-    msg: input.value,
+    message: input.value,
   });
 }
 
