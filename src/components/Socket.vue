@@ -3,15 +3,19 @@
     socket
     <el-button @click="joinroom">joinroom</el-button>
     <el-button @click="leaveroom">leaveroom</el-button>
-    <el-button @click="socketEmit">emit</el-button>
-    <el-button @click="privateEmit">emit</el-button>
+    <div class="socket">
+      <el-button @click="socketEmit">socketEmit</el-button>
+      <el-input v-model="input"></el-input>
+    </div>
+
+    <el-button @click="privateEmit">privateEmit</el-button>
   </div>
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";
 import { socket } from "@/libs/socketio";
 import { onMounted, ref } from "vue";
-
+const input = ref("");
 const brand = ref({});
 const username = ref("user1");
 
@@ -25,7 +29,10 @@ function leaveroom() {
 }
 
 function socketEmit() {
-  socket.emit("room-broadcast", { event: "test", to: "id" });
+  socket.emit("room-broadcast", "room-test", {
+    event: "test",
+    msg: input.value,
+  });
 }
 
 function privateEmit() {
@@ -43,5 +50,8 @@ onMounted(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.socket {
+  display: flex;
 }
 </style>
