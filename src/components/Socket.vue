@@ -1,22 +1,35 @@
 <template>
   <div class="business">
     socket
-    <el-button @click="socketConnect">socketio test connect</el-button>
+    <el-button @click="joinroom">joinroom</el-button>
+    <el-button @click="leaveroom">leaveroom</el-button>
     <el-button @click="socketEmit">emit</el-button>
+    <el-button @click="privateEmit">emit</el-button>
   </div>
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";
-// import { socket } from "@/libs/socketio";
+import { socket } from "@/libs/socketio";
 import { onMounted, ref } from "vue";
 
 const brand = ref({});
 const username = ref("user1");
 
-function socketConnect() {}
+function joinroom() {
+  socket.emit("join-room", "room-test");
+  console.log("join room");
+}
+
+function leaveroom() {
+  socket.emit("leave-room", { mag: "room-test" });
+}
 
 function socketEmit() {
-  // socket.emit("test", { data: "this is test" });
+  socket.emit("room-broadcast", { event: "test", to: "id" });
+}
+
+function privateEmit() {
+  socket.emit("private-message", "room-test", { data: "this is test" });
 }
 
 onMounted(() => {

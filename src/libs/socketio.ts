@@ -1,9 +1,9 @@
 import { io } from "socket.io-client";
 
-const socket = io("ws://127.0.0.1:5005/devices?sn=897508487", {
+const socket = io("ws://192.168.31.35:5005/iot", {
   reconnectionDelayMax: 10000,
   auth: {
-    sid: "5ce0fe572e59f395a53ef6d42e7d37b00e5b2d7c",
+    sid: "9739fcc40c161a2a0fca03c3689955efc9d552a7",
   },
 });
 
