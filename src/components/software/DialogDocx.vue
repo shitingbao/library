@@ -6,21 +6,24 @@
       width="30%"
       :before-close="handleClose"
     >
-      <el-form :model="form" label-width="120px">
-        <el-form-item label="header_content">
-          <el-input v-model="form.header_content" />
-        </el-form-item>
-        <el-form-item label="language">
+      <el-form :model="form" label-width="160px">
+        <el-form-item label="语言类型">
           <el-input v-model="form.language" />
         </el-form-item>
-        <!-- <el-form-item label="content">
-          <el-input
-            v-model="form.content"
-            :autosize="{ minRows: 2, maxRows: 4 }"
-            type="textarea"
-            placeholder="Please input"
+        <el-form-item label="每个段落前的注释内容">
+          <el-input v-model="form.content_title" />
+        </el-form-item>
+        <el-form-item label="关键字(英文逗号隔开)">
+          <el-input v-model="content_keys" />
+        </el-form-item>
+        <el-form-item label="num">
+          <el-input-number
+            v-model="form.contents_num"
+            :min="1"
+            :max="10"
+            @change="numHandleChange"
           />
-        </el-form-item> -->
+        </el-form-item>
       </el-form>
       <template #footer>
         <span class="dialog-footer">
@@ -47,16 +50,18 @@ const props = defineProps({
 
 const visible = ref(false);
 const name = ref("生成代码文件");
-
+const content_keys = ref("");
 const form = reactive({
-  header_content: "",
   language: "",
+  header_content: "",
   header_filters: [],
   content_filters: [],
   content_keys: [],
   contents_num: 0,
-  content_title: "",
+  content_title: "", // 每个段落前的注释
 });
+
+function numHandleChange() {}
 
 function handleClose(done: any) {
   ElMessageBox.confirm("Are you sure to close this dialog?")
@@ -76,26 +81,17 @@ function closeDialog() {
 }
 
 async function submit() {
-  // if (form.language === "" || form.content === "") {
-  //   closeDialog();
-  //   return;
-  // }
-
   const da: codeFileParam = {
-    // key: form.key,
-    // language: form.language,
-    // content: form.content,
-
     header_content: form.header_content,
     language: form.language,
     header_filters: form.header_filters,
     content_filters: form.content_filters,
-    content_keys: form.content_keys,
+    content_keys: content_keys.value.split(",") as any,
     contents_num: form.contents_num,
     content_title: form.content_title,
   };
 
-  const formData = { codes: JSON.stringify([da]) };
+  const formData = { codes: JSON.stringify(da) };
   createDocxFile(formData);
   closeDialog();
   // form.content = "";
