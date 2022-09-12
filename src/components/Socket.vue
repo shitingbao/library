@@ -3,8 +3,9 @@
     socket
     <el-button @click="joinroom">joinroom</el-button>
     <el-button @click="leaveroom">leaveroom</el-button>
+    <el-button @click="allclients">allclients</el-button>
     <div class="socket">
-      <el-button @click="socketEmit">socketEmit</el-button>
+      <el-button @click="roombroadcast">socketEmit</el-button>
       <el-input v-model="input"></el-input>
     </div>
 
@@ -13,30 +14,34 @@
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";
-import { socket } from "@/libs/socketio";
+// import { socket } from "@/libs/socketio";
 import { onMounted, ref } from "vue";
 const input = ref("");
 const brand = ref({});
 const username = ref("user1");
 
 function joinroom() {
-  socket.emit("join-room", "room-test");
+  // socket.emit("join-room", "room-test");
   console.log("join room");
 }
 
 function leaveroom() {
-  socket.emit("leave-room", { mag: "room-test" });
+  // socket.emit("leave-room", { mag: "room-test" });
 }
 
-function socketEmit() {
-  socket.emit("room-broadcast", "room-test", {
-    event: "test",
-    message: input.value,
-  });
+function allclients() {
+  // socket.emit("allclients", "room-test");
+}
+
+function roombroadcast() {
+  // socket.emit("room-broadcast", "room-test", {
+  //   event: "test",
+  //   message: input.value,
+  // });
 }
 
 function privateEmit() {
-  socket.emit("private-message", "room-test", { data: "this is test" });
+  // socket.emit("one", { data: "this is test" });
 }
 
 onMounted(() => {
