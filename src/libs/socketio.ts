@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-
+// dev
 const socket = io("ws://192.168.31.35:5005/iot?name=aa", {
   withCredentials: true,
   reconnectionDelayMax: 10000,
