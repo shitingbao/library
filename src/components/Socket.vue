@@ -31,7 +31,7 @@ function joinroom() {
 }
 
 function leaveroom() {
-  socket.emit("leave-room", "stb", { room: "stb" });
+  socket.emit("leave-room", "stb");
 }
 
 function userlist() {

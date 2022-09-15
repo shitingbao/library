@@ -4,7 +4,7 @@ const socket = io("ws://192.168.31.35:5005/iot?name=aa", {
   withCredentials: true,
   reconnectionDelayMax: 10000,
   auth: {
-    sid: "9739fcc40c161a2a0fca03c3689955efc9d552a7",
+    sid: "9e0b7afa691dd3737189ab60a56e2e4e73b3733a",
   },
 });
 
