@@ -35,7 +35,7 @@ function leaveroom() {
 }
 
 function userlist() {
-  socket.emit("userlist");
+  socket.emit("userlist", "stb");
 }
 
 function roombroadcast() {
