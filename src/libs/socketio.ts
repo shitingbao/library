@@ -32,6 +32,10 @@ socket.on("room-joined", (msg: any) => {
   console.log("room-joined==>:", msg); // "G5p5..."
 });
 
+socket.on("error", (msg: any) => {
+  console.log("room-error==>:", msg); // "G5p5..."
+});
+
 socket.on("disconnect", () => {
   console.log(socket.id); // "G5p5..."
 });
