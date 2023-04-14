@@ -15,11 +15,12 @@
 </template>
 <script lang="ts" setup>
 // import router from "@/router/router";
-import { socket } from "@/libs/socketio";
+import { NewSocket } from "@/libs/socketio";
 import { onMounted, ref } from "vue";
 const input = ref("");
 const brand = ref({});
 const username = ref("user1");
+const socket = NewSocket();
 
 function ping() {
   socket.emit("ping");
