@@ -46,21 +46,12 @@ function handleSelect(key: any, keyPath: any) {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   .menu {
-    display: flex;
-    width: 100%;
+    border-bottom: 0px; // 加上这个，不然 el-menu 会有下边框
   }
-
-  .library {
-    flex: 1;
-    width: 100%;
+  .content {
+    flex: auto;
   }
-}
-
-.content {
-  display: flex;
-  width: 100%;
-  height: 100%;
 }
 </style>
