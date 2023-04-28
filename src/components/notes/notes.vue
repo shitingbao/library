@@ -1,10 +1,26 @@
 <template>
   <div class="notes">
     <div class="anthology">
-      anthology
-      <!-- <el-button class="login-table-signin" type="primary" @click="send">
-        ping
-      </el-button> -->
+      <el-menu
+        default-active="2"
+        class="anthology-menu"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+      >
+        <el-submenu index="1">
+          <el-submenu index="1-1" v-for="(idx, item) in itemList">
+            <el-menu-item index="1-1-1" class="anthology-menu-submenu">
+              {{ idx }}--{{ item }}
+            </el-menu-item>
+          </el-submenu>
+          <el-submenu index="1-2">
+            <el-menu-item index="1-2-1">item one</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+      </el-menu>
     </div>
     <div class="title">title</div>
     <div class="content">content</div>
@@ -13,9 +29,29 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
-function send() {
+const itemList = [
+  "one",
+  "two",
+  "three",
+  "one",
+  "two",
+  "three",
+  "one",
+  "two",
+  "three",
+  "one",
+  "two",
+  "three",
+];
+
+function handleOpen() {
   // this.$socket.io.emit("ping", "ping");
-  console.log("ping:", "ping");
+  console.log("handleOpen:", "handleOpen");
+}
+
+function handleClose() {
+  // this.$socket.io.emit("ping", "ping");
+  console.log("handleClose:", "handleClose");
 }
 
 onMounted(() => {
@@ -25,33 +61,45 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .notes {
+  flex: 1;
   display: flex;
-  flex-direction: row;
   width: 100%;
-
+  height: 100%;
   background-color: #3d3d3d;
   .anthology {
-    display: flex;
-    flex-grow: 1;
+    flex: 1;
     flex-direction: column;
     background-color: #404040;
     color: #b3b3b3;
+    width: 0px;
+    overflow: scroll;
+    .anthology-menu {
+      width: 100%;
+      background-color: #404040;
+      border-right: 0px;
+
+      .anthology-menu-submenu {
+        -webkit-line-clamp: 0; //多行在这里修改数字即可
+      }
+    }
   }
   .title {
     display: flex;
-    flex-grow: 2;
+    flex: 2;
     flex-direction: column;
     background-color: #404040;
     border-right: 1px solid #d9d9d9;
     border-left: 1px solid #d9d9d9;
     color: #b3b3b3;
+    width: 0px;
   }
   .content {
     display: flex;
-    flex-grow: 4;
+    flex: 4;
     flex-direction: column;
     background-color: #3d3d3d;
     color: #b3b3b3;
+    width: 0px;
   }
 }
 </style>

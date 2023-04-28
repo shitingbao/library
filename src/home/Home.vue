@@ -44,14 +44,18 @@ function handleSelect(key: any, keyPath: any) {
 <style lang="less">
 .app {
   display: flex;
+  position: absolute;
   flex-direction: column;
-  width: 100%;
-  height: 100vh;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
   .menu {
     border-bottom: 0px; // 加上这个，不然 el-menu 会有下边框
   }
   .content {
-    flex: auto;
+    // flex: 1;
   }
 }
 </style>
