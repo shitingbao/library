@@ -2,7 +2,7 @@
   <div class="notes">
     <div class="anthology">
       <el-menu
-        default-active="2"
+        default-active="1"
         class="anthology-menu"
         @open="handleOpen"
         @close="handleClose"
@@ -12,8 +12,8 @@
       >
         <el-submenu index="1">
           <el-submenu index="1-1" v-for="(idx, item) in itemList">
-            <el-menu-item index="1-1-1" class="anthology-menu-submenu">
-              {{ idx }}--{{ item }}
+            <el-menu-item :index="idx">
+              <span class="anthology-menu-submenu"> {{ idx }}--{{ item }}</span>
             </el-menu-item>
           </el-submenu>
           <el-submenu index="1-2">
@@ -22,7 +22,26 @@
         </el-submenu>
       </el-menu>
     </div>
-    <div class="title">title</div>
+    <div class="title">
+      <el-menu
+        default-active="2"
+        class="anthology-menu"
+        @open="handleOpen"
+        @close="handleClose"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+      >
+        <el-submenu index="2">
+          <el-submenu index="2-1" v-for="(idx, item) in titleList">
+            <el-menu-item index="2-1-1"> {{ idx }}--{{ item }} </el-menu-item>
+          </el-submenu>
+          <el-submenu index="2-2">
+            <el-menu-item index="2-2-1">item one</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+      </el-menu>
+    </div>
     <div class="content">content</div>
   </div>
 </template>
@@ -30,7 +49,22 @@
 import { onMounted, ref } from "vue";
 
 const itemList = [
+  "onaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaae",
+  "two",
+  "three",
   "one",
+  "two",
+  "three",
+  "one",
+  "two",
+  "three",
+  "one",
+  "two",
+  "three",
+];
+
+const titleList = [
+  "twoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaae",
   "two",
   "three",
   "one",
@@ -73,15 +107,6 @@ onMounted(() => {
     color: #b3b3b3;
     width: 0px;
     overflow: scroll;
-    .anthology-menu {
-      width: 100%;
-      background-color: #404040;
-      border-right: 0px;
-
-      .anthology-menu-submenu {
-        -webkit-line-clamp: 0; //多行在这里修改数字即可
-      }
-    }
   }
   .title {
     display: flex;
@@ -92,6 +117,7 @@ onMounted(() => {
     border-left: 1px solid #d9d9d9;
     color: #b3b3b3;
     width: 0px;
+    overflow: scroll;
   }
   .content {
     display: flex;
@@ -100,6 +126,15 @@ onMounted(() => {
     background-color: #3d3d3d;
     color: #b3b3b3;
     width: 0px;
+  }
+  .anthology-menu {
+    background-color: #404040;
+    border-right: 0px;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    .anthology-menu-submenu {
+    }
   }
 }
 </style>

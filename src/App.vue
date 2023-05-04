@@ -9,5 +9,7 @@ import Home from "@/home/Home.vue";
 <style lang="less">
 body {
   margin: 0px;
+  height: 100%;
+  width: 100%;
 }
 </style>
