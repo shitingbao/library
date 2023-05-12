@@ -3,7 +3,7 @@
     <div class="anthology">
       <el-menu
         default-active="1"
-        class="anthology-menu"
+        class="menu"
         @open="handleOpen"
         @close="handleClose"
         background-color="#545c64"
@@ -11,13 +11,10 @@
         active-text-color="#ffd04b"
       >
         <el-submenu index="1">
-          <el-submenu index="1-1" v-for="(idx, item) in itemList">
+          <el-submenu :index="idx" v-for="(item, idx) in itemList">
             <el-menu-item :index="idx">
-              <span class="anthology-menu-submenu"> {{ idx }}--{{ item }}</span>
+              <span class="menu-submenu"> {{ item }}--{{ idx }}</span>
             </el-menu-item>
-          </el-submenu>
-          <el-submenu index="1-2">
-            <el-menu-item index="1-2-1">item one</el-menu-item>
           </el-submenu>
         </el-submenu>
       </el-menu>
@@ -25,7 +22,7 @@
     <div class="title">
       <el-menu
         default-active="2"
-        class="anthology-menu"
+        class="menu"
         @open="handleOpen"
         @close="handleClose"
         background-color="#545c64"
@@ -33,11 +30,10 @@
         active-text-color="#ffd04b"
       >
         <el-submenu index="2">
-          <el-submenu index="2-1" v-for="(idx, item) in titleList">
-            <el-menu-item index="2-1-1"> {{ idx }}--{{ item }} </el-menu-item>
-          </el-submenu>
-          <el-submenu index="2-2">
-            <el-menu-item index="2-2-1">item one</el-menu-item>
+          <el-submenu :index="idx" v-for="(item, idx) in titleList">
+            <el-menu-item :index="idx">
+              <span class="menu-submenu"> {{ item }}--{{ idx }}</span>
+            </el-menu-item>
           </el-submenu>
         </el-submenu>
       </el-menu>
@@ -54,13 +50,6 @@ const itemList = [
   "three",
   "one",
   "two",
-  "three",
-  "one",
-  "two",
-  "three",
-  "one",
-  "two",
-  "three",
 ];
 
 const titleList = [
@@ -71,11 +60,6 @@ const titleList = [
   "two",
   "three",
   "one",
-  "two",
-  "three",
-  "one",
-  "two",
-  "three",
 ];
 
 function handleOpen() {
@@ -127,13 +111,17 @@ onMounted(() => {
     color: #b3b3b3;
     width: 0px;
   }
-  .anthology-menu {
+  .menu {
     background-color: #404040;
     border-right: 0px;
     flex: 1;
     white-space: nowrap;
-    overflow: hidden;
-    .anthology-menu-submenu {
+    .menu-submenu {
+      display: inline-block;
+      width: 100%; /* 占用100%的父元素宽度 */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /*用空字符串代替超出部分*/
     }
   }
 }
