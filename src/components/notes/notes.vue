@@ -11,6 +11,14 @@
         active-text-color="#ffd04b"
       >
         <el-submenu index="1">
+          <el-submenu index="1-1">
+            <el-menu-item index="1-1-1">
+              <span>新建文集</span>
+            </el-menu-item>
+          </el-submenu>
+        </el-submenu>
+
+        <el-submenu index="1">
           <el-submenu :index="idx" v-for="(item, idx) in itemList">
             <el-menu-item :index="idx">
               <span class="menu-submenu"> {{ item }}--{{ idx }}</span>
@@ -29,6 +37,13 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
+        <el-submenu index="1">
+          <el-submenu index="1-1">
+            <el-menu-item index="1-1-1">
+              <span> <i class="el-icon-circle-plus-outline"></i>新建文集</span>
+            </el-menu-item>
+          </el-submenu>
+        </el-submenu>
         <el-submenu index="2">
           <el-submenu :index="idx" v-for="(item, idx) in titleList">
             <el-menu-item :index="idx">
