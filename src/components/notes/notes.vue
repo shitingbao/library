@@ -12,16 +12,18 @@
       >
         <el-submenu index="1">
           <el-submenu index="1-1">
-            <el-menu-item index="1-1-1">
+            <el-menu-item index="1-1-1" @click="createNote(1)">
+              <el-icon><CirclePlus /></el-icon>
               <span>新建文集</span>
             </el-menu-item>
           </el-submenu>
         </el-submenu>
 
-        <el-submenu index="1">
+        <el-submenu index="2">
           <el-submenu :index="idx" v-for="(item, idx) in itemList">
             <el-menu-item :index="idx">
-              <span class="menu-submenu"> {{ item }}--{{ idx }}</span>
+              <span class="menu-submenu"> {{ item }} </span>
+              <el-icon @click="deleteNote(1, idx)"><DeleteFilled /></el-icon>
             </el-menu-item>
           </el-submenu>
         </el-submenu>
@@ -37,17 +39,19 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        <el-submenu index="1">
-          <el-submenu index="1-1">
-            <el-menu-item index="1-1-1">
-              <span> <i class="el-icon-circle-plus-outline"></i>新建文集</span>
+        <el-submenu index="3">
+          <el-submenu index="3-1">
+            <el-menu-item index="3-1-1" @click="createNote(2)">
+              <el-icon><CirclePlus /></el-icon>
+              <span> 新建文集</span>
             </el-menu-item>
           </el-submenu>
         </el-submenu>
-        <el-submenu index="2">
+        <el-submenu index="4">
           <el-submenu :index="idx" v-for="(item, idx) in titleList">
             <el-menu-item :index="idx">
-              <span class="menu-submenu"> {{ item }}--{{ idx }}</span>
+              <span class="menu-submenu"> {{ item }}</span>
+              <el-icon @click="deleteNote(2, idx)"><DeleteFilled /></el-icon>
             </el-menu-item>
           </el-submenu>
         </el-submenu>
@@ -59,23 +63,9 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 
-const itemList = [
-  "onaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaae",
-  "two",
-  "three",
-  "one",
-  "two",
-];
+const itemList = ref(["aaa", "bbb", "ccc", "ddd", "eee"]);
 
-const titleList = [
-  "twoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeaaaaaaaaaaaaaaaaaaaaaaaaaaaae",
-  "two",
-  "three",
-  "one",
-  "two",
-  "three",
-  "one",
-];
+const titleList = ref(["aaa", "bbb", "cc", "ddddd", "eeee", "ffff", "gggg"]);
 
 function handleOpen() {
   // this.$socket.io.emit("ping", "ping");
@@ -85,6 +75,33 @@ function handleOpen() {
 function handleClose() {
   // this.$socket.io.emit("ping", "ping");
   console.log("handleClose:", "handleClose");
+}
+
+function createNote(e: number) {
+  switch (e) {
+    case 1:
+      itemList.value.unshift("2023-05-15");
+      break;
+    case 2:
+      titleList.value.unshift("2023-05-15");
+      break;
+    default:
+  }
+
+  console.log("creatte:", e);
+}
+
+function deleteNote(tp: number, idx: number) {
+  switch (tp) {
+    case 1:
+      itemList.value.splice(idx, 1);
+      break;
+    case 2:
+      titleList.value.splice(idx, 1);
+      break;
+    default:
+  }
+  console.log("delete notes:", idx);
 }
 
 onMounted(() => {
