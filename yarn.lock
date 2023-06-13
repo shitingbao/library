@@ -257,10 +257,10 @@
   dependencies:
     vue-demi "*"
 
-ant-design-vue@^3.2.4:
-  version "3.2.4"
-  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.4.tgz#537801219c39351d0b490405e8802cb975fea159"
-  integrity sha512-aA30m1cDBn+dIOFGQvHn0AMpFiubtKgCAhN1jOX8NoyVyZ705Bf/5MI/RftQbsWY9CvVsl3QztAJZwA/Z6Bb1g==
+ant-design-vue@^3.2.20:
+  version "3.2.20"
+  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.20.tgz#552f5f08e2acbcc10bd4089145d4cc2b15d4cfec"
+  integrity sha512-YWpMfGaGoRastIXEYfCoJiaRiDHk4chqtYhlKQM5GqPt6NfvrM1Vg2e60yHtjxlZjed91wCMm0rAmyUr7Hwzdg==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons-vue" "^6.1.0"

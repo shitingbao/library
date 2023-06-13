@@ -11,6 +11,7 @@
     </div>
 
     <el-button @click="privateEmit">privateEmit</el-button>
+    <!-- <el-button @click="disconnect">disconnect</el-button> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -41,15 +42,23 @@ function userlist() {
 
 function roombroadcast() {
   socket.emit("room-broadcast", {
-    room: "test",
+    room: "stb",
     event: "test",
-    message: input.value,
+    message: { val: input.value },
   });
 }
 
 function privateEmit() {
-  socket.emit("one", { data: "this is test" });
+  socket.emit("private-message", {
+    event: "test",
+    to: "stb",
+    message: { data: "this is private test" },
+  });
 }
+
+// function disconnect() {
+//   socket.emit("disconnect", "stb");
+// }
 
 onMounted(() => {
   console.log("onMounted 123");
