@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 // });
 
 function NewSocket() {
-  const socket = io("ws://127.0.0.1:5005/iot?name=aa", {
+  const socket = io("ws://127.0.0.1:5005/iot?sn=aaa", {
     withCredentials: true,
     reconnectionDelayMax: 10000,
     auth: {
