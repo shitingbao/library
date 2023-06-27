@@ -62,6 +62,12 @@ function privateEmit() {
 
 onMounted(() => {
   console.log("onMounted 123");
+
+  setInterval(() => {
+    // 这里是定时执行的代码
+    heartbeat();
+    console.log("heartint!!!");
+  }, 9000);
 });
 </script>
 <style lang="less">

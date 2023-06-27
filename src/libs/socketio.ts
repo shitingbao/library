@@ -9,11 +9,13 @@ import { io } from "socket.io-client";
 // });
 
 function NewSocket() {
-  const socket = io("ws://127.0.0.1:5005/iot?sn=aaa", {
+  const socket = io("ws://192.168.31.33:5005/iot?sn=SZLXIX4EFRIP6", {
     withCredentials: true,
     reconnectionDelayMax: 10000,
     auth: {
       sid: "9e0b7afa691dd3737189ab60a56e2e4e73b3733a",
+      phoneNumber: "15164350934",
+      platform: "windows",
     },
   });
 
