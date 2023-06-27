@@ -66,8 +66,8 @@ onMounted(() => {
   setInterval(() => {
     // 这里是定时执行的代码
     heartbeat();
-    console.log("heartint!!!");
-  }, 9000);
+    console.log("heartint!!!", Date());
+  }, 4500);
 });
 </script>
 <style lang="less">
