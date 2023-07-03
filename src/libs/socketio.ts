@@ -23,8 +23,12 @@ function NewSocket() {
     console.log("ssocket id ,connetced===:", socket.id, socket.connected); // "G5p5..."
   });
 
-  socket.on("pong", (msg: any) => {
-    console.log("pong==>:", msg); // "G5p5..."
+  socket.io.on("ping", () => {
+    console.log("get io server ping msg!!!"); // "G5p5..."
+  });
+
+  socket.on("ping", (msg: any) => {
+    console.log("get server ping msg is==> : ", msg); // "G5p5..."
   });
 
   socket.on("test", (msg: any) => {
