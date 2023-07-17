@@ -1,6 +1,7 @@
 <template>
   <div class="business">
     socket
+    <el-button @click="ping">ping</el-button>
     <el-button @click="heartbeat">heartbeat</el-button>
     <el-button @click="joinroom">joinroom</el-button>
     <el-button @click="leaveroom">leaveroom</el-button>
@@ -22,6 +23,10 @@ const input = ref("");
 const brand = ref({});
 const username = ref("user1");
 const socket = NewSocket();
+
+function ping() {
+  socket.emit("ping", "ping message");
+}
 
 function heartbeat() {
   socket.emit("heartbeat");
