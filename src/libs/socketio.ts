@@ -36,7 +36,7 @@ import { io } from "socket.io-client";
 // }
 
 function NewSocket() {
-  const socket = io("ws://192.168.31.33:5005/iot", {
+  const socket = io("ws://192.168.31.33:8000?name=aa", {
     withCredentials: true,
     reconnectionDelayMax: 10000,
     auth: {
@@ -45,9 +45,9 @@ function NewSocket() {
       platform: "windows",
     },
     extraHeaders: {
-      "x-device-token":
-        "Xl9TBO+BSSn4ctm/mMZMEDcaENUbaVYER7fHi/fnTb6craTHQaUCszqW98HMPxJFJ+Kuw8zg8L8okE+V6OE2HfxVqoJ5/YqZyOlGQk74marPStmB4CVgnFPfXFFQEZy8xCcEcYSzunvFDxchWF6Z4HpiWdh0zJ7rN3uVtKdZtD14T92eNuzANAhy/ONGhjunyo2AdAXTHjdMHd+FO2Mq6eAWsZx9XZDeyyGfB+8H4DY4+LKdmcD8YLDBA9FnPa35DMPcOG7BedqnNm/kKLlq1EjsjxYZVna0uOaj63E3BAoGiF1RQg07OBbSMA8H7ldSYlsAxDaStd4SBzxRqbXkGA==", // encodeKey
-      "x-device-sn": "aa",
+      // "x-device-token":
+      //   "Xl9TBO+BSSn4ctm/mMZMEDcaENUbaVYER7fHi/fnTb6craTHQaUCszqW98HMPxJFJ+Kuw8zg8L8okE+V6OE2HfxVqoJ5/YqZyOlGQk74marPStmB4CVgnFPfXFFQEZy8xCcEcYSzunvFDxchWF6Z4HpiWdh0zJ7rN3uVtKdZtD14T92eNuzANAhy/ONGhjunyo2AdAXTHjdMHd+FO2Mq6eAWsZx9XZDeyyGfB+8H4DY4+LKdmcD8YLDBA9FnPa35DMPcOG7BedqnNm/kKLlq1EjsjxYZVna0uOaj63E3BAoGiF1RQg07OBbSMA8H7ldSYlsAxDaStd4SBzxRqbXkGA==", // encodeKey
+      // "x-device-sn": "aa",
     },
   });
 
@@ -61,6 +61,10 @@ function NewSocket() {
 
   socket.on("ping", (msg: any) => {
     console.log("get server ping msg is==> : ", msg); // "G5p5..."
+  });
+
+  socket.on("pong", (msg: any) => {
+    console.log("get server pong msg is==> : ", msg); // "G5p5..."
   });
 
   socket.on("test", (msg: any) => {

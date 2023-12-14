@@ -14,6 +14,7 @@
       <el-menu-item index="imageupload">图片文字提取</el-menu-item>
       <el-menu-item index="comparison">文件内容比较</el-menu-item>
       <el-menu-item index="excelToCsv">excelToCsv</el-menu-item>
+      <el-menu-item index="chat">chat</el-menu-item>
       <el-menu-item index="console">
         <span>控制台</span>
       </el-menu-item>

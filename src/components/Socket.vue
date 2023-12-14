@@ -25,6 +25,7 @@ const username = ref("user1");
 const socket = NewSocket();
 
 function ping() {
+  console.log("ping");
   socket.emit("ping", "ping message");
 }
 
@@ -39,6 +40,7 @@ function joinroom() {
 
 function leaveroom() {
   socket.emit("leave-room", "stb");
+  console.log("leave room");
 }
 
 function userlist() {

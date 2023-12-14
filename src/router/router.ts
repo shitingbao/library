@@ -4,7 +4,7 @@ import Qrcode from "@/components/Qrcode.vue";
 import Index from "@/home/library/Index.vue";
 import Socket from "@/components/Socket.vue";
 import Software from "@/components/software/Software.vue";
-import Notes from "@/components/notes/notes.vue"
+import Notes from "@/components/notes/notes.vue";
 
 import { userStat } from "@/api/user";
 
@@ -38,6 +38,11 @@ const routers = [
     path: "/notes",
     name: "notes",
     component: Notes,
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    component: Chat,
   },
   // {
   //   path: "/index",
