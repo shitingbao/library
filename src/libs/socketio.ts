@@ -36,11 +36,11 @@ import { io } from "socket.io-client";
 // }
 
 function NewSocket() {
-  const socket = io("ws://192.168.31.33:8000?name=aa", {
+  const socket = io("ws://localhost:8000?name=aa", {
     withCredentials: true,
     reconnectionDelayMax: 10000,
     auth: {
-      sid: "9e0b7afa691dd3737189ab60a56e2e4e73b3733a",
+      sid: "aaaa",
       phoneNumber: "15164350934",
       platform: "windows",
     },
@@ -81,6 +81,10 @@ function NewSocket() {
 
   socket.on("room-joined", (msg: any) => {
     console.log("room-joined==>:", msg); // "G5p5..."
+  });
+
+  socket.on("all-user", (msg: any) => {
+    console.log("all-user==>:", msg); // "G5p5..."
   });
 
   socket.on("error", (msg: any) => {
