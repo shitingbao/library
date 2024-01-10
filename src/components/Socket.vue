@@ -48,10 +48,10 @@ function userlist() {
 }
 
 function roombroadcast() {
-  socket.emit("room-broadcast", {
+  socket.emit("broadcast", {
     room: "stb",
     event: "test",
-    message: { val: input.value },
+    message: 1111111,
   });
 }
 
